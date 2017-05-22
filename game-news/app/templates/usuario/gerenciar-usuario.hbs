@@ -1,0 +1,22 @@
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Nome</th>
+      <th class="mdl-data-table__cell--non-numeric">E-mail</th>
+      <th>Tipo usuario</th>
+      <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |usuario|}}
+      <tr>
+        <td class="mdl-data-table__cell--non-numeric">{{usuario.nome}})</td>
+        <tdclass="mdl-data-table__cell--non-numeric">{{usuario.email}}</td>
+        <td>{{usuario.tp_usuario}}</td>
+        <td>Editar</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{outlet}}

@@ -1,0 +1,7 @@
+<div style="width:50%">
+  {{#each model as |noticia|}}
+    <h3>{{noticia.titulo}}</h3><p>{{noticia.autor}}</p>
+    <pre>{{noticia.conteudo}}</pre>
+  {{/each}}
+</div>
+{{outlet}}
