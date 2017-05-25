@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Usuario {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "cd_usuario", columnDefinition = "int(10) unsigned", nullable = false)
+	@SequenceGenerator(name = "cd_usuario")
+	@Column(name = "cd_usuario", columnDefinition = "int(10) unsigned")
 	private int id;
 	@Column(name = "nm_usuario", columnDefinition = "varchar(50)", nullable = false)
 	private String username;
@@ -26,7 +27,7 @@ public class Usuario {
 	private String senha;
 	@Column(name = "ds_email", columnDefinition = "varchar(50)", nullable = false)
 	private String email;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="cd_tipo_usuario_fk_tipo_usuario")
 	private Tipo_usuario tp_usuario;
 	

@@ -41,7 +41,7 @@ export default Ember.Route.extend({
                         "id": "1",
                         "senha": senha,
                         "tp_usuario": {
-                            "id": "2",
+                            "id": "3",
                             "nome": "comum"
                         },
                         "username": nome
