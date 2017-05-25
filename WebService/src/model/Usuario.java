@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Usuario {
 
 	@Id
-	@SequenceGenerator(name = "cd_usuario")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "cd_usuario", columnDefinition = "int(10) unsigned", nullable = false)
 	private int id;
 	@Column(name = "nm_usuario", columnDefinition = "varchar(50)", nullable = false)
@@ -91,6 +93,14 @@ public class Usuario {
 
 	public void setTp_usuario(Tipo_usuario tp_usuario) {
 		this.tp_usuario = tp_usuario;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", username=" + username + ", senha=" + senha + ", email=" + email
+				+ ", tp_usuario=" + tp_usuario.toString() + "]";
 	}
 
 }

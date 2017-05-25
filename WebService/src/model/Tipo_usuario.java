@@ -36,5 +36,9 @@ public class Tipo_usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	@Override
+	public String toString() {
+		return "Tipo_usuario [id=" + id + ", nome=" + nome + "]";
+	}
 
 }

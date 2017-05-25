@@ -51,6 +51,7 @@ public class UsuarioService {
 	@Produces("text/plain")
 	public String addPessoa(Usuario usuario) {
 		try {
+			System.out.println(usuario.toString());
 			UsuarioControle usuarioController = new UsuarioControle();
 			usuarioController.inserir(usuario);
 			return usuario.getEmail() + " adicionado.";

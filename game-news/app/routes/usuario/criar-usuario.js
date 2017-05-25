@@ -29,21 +29,33 @@ export default Ember.Route.extend({
 
       if(campos_preenchidos){
           $.ajax({
-            url: "https://localhost:8080/WebService/usuarios",
+            headers: {
+                'Accept': 'text/plain',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/WebService/usuarios",
             type: "POST",
-            data: { username: nome,
-                    email: email,
-                    senha: senha,
-                    tp_usuario: 1},
+            crossDomain: true,
+            data: JSON.stringify( {
+                        "email": email,
+                        "id": "1",
+                        "senha": senha,
+                        "tp_usuario": {
+                            "id": "2",
+                            "nome": "comum"
+                        },
+                        "username": nome
+                    }
+                  ),
             dataType: "json",
-            success: function (result) {
+            success: (result) => {
                 switch (result) {
                     case true:
                         break;
                     default:
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
+            error: (xhr, ajaxOptions, thrownError) => {
               alert(xhr.status);
               alert(thrownError);
             }
