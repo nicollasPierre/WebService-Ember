@@ -9,11 +9,12 @@ export default Ember.Route.extend({
       var email = document.getElementById('email').value;
       var confirmaSenha = document.getElementById('confirmar_senha').value;
 
+      document.getElementById('ee').required = true;
 
 
       if(nome == ''){
         campos_preenchidos = false;
-        document.getElementById('nome').required = true;
+        document.getElementById('email').required = true;
       }
 
       if(email == ''){
@@ -38,21 +39,24 @@ export default Ember.Route.extend({
             crossDomain: true,
             data: JSON.stringify( {
                         "email": email,
-                        "id": "1",
                         "senha": senha,
                         "tp_usuario": {
-                            "id": "3",
+                            "id": "2",
                             "nome": "comum"
                         },
                         "username": nome
                     }
                   ),
-            dataType: "json",
+            dataType: "text",
             success: (result) => {
                 switch (result) {
                     case true:
+                        alert('Usuario Cadastrado com sucesso');
+                        this.replaceWith('gerenciar-usuario');
                         break;
                     default:
+                        alert('Usuario Cadastrado com sucesso');
+                        this.replaceWith('usuario.gerenciar-usuario');
                 }
             },
             error: (xhr, ajaxOptions, thrownError) => {

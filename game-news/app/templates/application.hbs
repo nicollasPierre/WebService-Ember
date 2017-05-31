@@ -9,9 +9,9 @@
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="">Inicio</a>
         <a class="mdl-navigation__link" href="">Novo Post</a>
-        <a class="mdl-navigation__link" href="">Criar conta</a>
+        {{#link-to "usuario.criar-usuario"}}<a class="mdl-navigation__link" href="">Criar conta</a>{{/link-to}}
         <a class="mdl-navigation__link" href="">Logar</a>
-        <a class="mdl-navigation__link" href="">Gerenciar Usuario</a>
+        {{#link-to "usuario.gerenciar-usuario"}}<a class="mdl-navigation__link" href="">Gerenciar Usuario</a>{{/link-to}}
       </nav>
     </div>
   </header>

@@ -53,8 +53,10 @@ public class UsuarioService {
 		try {
 			System.out.println(usuario.toString());
 			UsuarioControle usuarioController = new UsuarioControle();
-			usuarioController.inserir(usuario);
-			return usuario.getEmail() + " adicionado.";
+			if (usuarioController.inserir(usuario))
+				return usuario.getEmail() + " adicionado.";
+			else
+				return "Falha ao adicionar usuario";
 		} catch (Exception e) {
 			System.out.println("Erro ao inserir usuario " + usuario.getEmail() + " no bd: " + e.getMessage());
 			return null;
@@ -83,7 +85,7 @@ public class UsuarioService {
 		try {
 			UsuarioControle usuarioController = new UsuarioControle();
 			usuarioController.excluir(id);
-			return "Usuario "+id + " excluido.";
+			return "Usuario " + id + " excluido.";
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir usuario " + id + " no bd: " + e.getMessage());
 			return null;

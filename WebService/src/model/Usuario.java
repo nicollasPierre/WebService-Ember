@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Usuario {
 
 	@Id
-	@SequenceGenerator(name = "cd_usuario")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "cd_usuario", columnDefinition = "int(10) unsigned")
 	private int id;
 	@Column(name = "nm_usuario", columnDefinition = "varchar(50)", nullable = false)

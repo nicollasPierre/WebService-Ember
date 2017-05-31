@@ -15,6 +15,8 @@ public class UsuarioControle implements DAO<Usuario> {
 			ConexaoDB.manager.getTransaction().begin();
 			try {
 				usuario.setTp_usuario(new Tipo_usuarioControle().buscar(usuario.getTp_usuario().getId()));
+				if(usuario.getTp_usuario() == null)
+					return false;
 				ConexaoDB.manager.persist(usuario);
 				ConexaoDB.manager.getTransaction().commit();
 				return true;
