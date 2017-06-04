@@ -9,8 +9,9 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('usuario', function() {
     this.route('criar-usuario');
-    this.route('gerenciar-usuario', function() {
-      this.route('editar-usuario', { path: '/:usuario_id' });
+    this.route('gerenciar-usuario');
+    this.route('editar-usuario', function() {
+      this.route('show', { path: '/:usuario_id' });
     });
   });
 

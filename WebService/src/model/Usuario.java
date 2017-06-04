@@ -27,7 +27,7 @@ public class Usuario {
 	private String senha;
 	@Column(name = "ds_email", columnDefinition = "varchar(50)", nullable = false)
 	private String email;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="cd_tipo_usuario_fk_tipo_usuario")
 	private Tipo_usuario tp_usuario;
 	

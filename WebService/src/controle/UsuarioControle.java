@@ -14,9 +14,13 @@ public class UsuarioControle implements DAO<Usuario> {
 		if (usuario.getEmail() != null && usuario.getSenha() != null && usuario.getUsername() != null) {
 			ConexaoDB.manager.getTransaction().begin();
 			try {
-				usuario.setTp_usuario(new Tipo_usuarioControle().buscar(usuario.getTp_usuario().getId()));
-				if(usuario.getTp_usuario() == null)
-					return false;
+				Tipo_usuario tp_usuario =new Tipo_usuarioControle().buscar(usuario.getTp_usuario().getId());
+				
+				if(tp_usuario == null){
+					/*new Tipo_usuarioControle().inserir(usuario.getTp_usuario());
+					tp_usuario = new Tipo_usuarioControle().buscar(usuario.getTp_usuario().getId());*/
+				}else
+					usuario.setTp_usuario(tp_usuario);
 				ConexaoDB.manager.persist(usuario);
 				ConexaoDB.manager.getTransaction().commit();
 				return true;
@@ -37,6 +41,10 @@ public class UsuarioControle implements DAO<Usuario> {
 		uBusca.setUsername(objeto.getUsername());
 		uBusca.setEmail(objeto.getEmail());
 		uBusca.setSenha(objeto.getSenha());
+		objeto.setTp_usuario(new Tipo_usuarioControle().buscar(objeto.getTp_usuario().getId()));
+		if(objeto.getTp_usuario() == null){
+			return false;
+		}
 		uBusca.setTp_usuario(objeto.getTp_usuario());
 		ConexaoDB.manager.getTransaction().begin();
 		ConexaoDB.manager.merge(uBusca);

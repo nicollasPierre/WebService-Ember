@@ -21,7 +21,7 @@ public class Tipo_usuario {
 	private int id;
 	@Column(name = "nm_tipo", columnDefinition = "varchar(20)", nullable = false)
 	private String nome;
-	@OneToMany(mappedBy = "tp_usuario", targetEntity = Usuario.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "tp_usuario", targetEntity = Usuario.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Usuario> usuarios;
 	
 	

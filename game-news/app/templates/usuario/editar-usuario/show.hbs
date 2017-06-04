@@ -1,0 +1,49 @@
+<table align="center">
+  <tbody>
+    <tr>
+      <td>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="nome" required>
+            <label class="mdl-textfield__label" for="nome">Nome...</label>
+        </div>
+      </td>
+      <td>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="email" required>
+            <label class="mdl-textfield__label" for="email">E-mail...</label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="password" id="senha" required>
+            <label class="mdl-textfield__label" for="senha">Senha...</label>
+        </div>
+      </td>
+      <td>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="password" id="confirmar_senha" required>
+            <label class="mdl-textfield__label" for="confirmar_senha">Confirmar Senha...</label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button {{action "remove"}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="float:right;">
+          Deletar
+        </button>
+      </td>
+      <td>
+        <button {{action "alterarUsuario"}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="float:right;">
+          Alterar
+        </button>
+        <button {{action "transformarPostador"}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="float:right;">
+          Transformar Postador
+        </button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+{{outlet}}

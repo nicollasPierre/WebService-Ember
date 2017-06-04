@@ -9,7 +9,6 @@ export default Ember.Route.extend({
       var email = document.getElementById('email').value;
       var confirmaSenha = document.getElementById('confirmar_senha').value;
 
-      document.getElementById('ee').required = true;
 
 
       if(nome == ''){
@@ -29,7 +28,7 @@ export default Ember.Route.extend({
       }
 
       if(campos_preenchidos){
-          $.ajax({
+          Ember.$.ajax({
             headers: {
                 'Accept': 'text/plain',
                 'Content-Type': 'application/json'
