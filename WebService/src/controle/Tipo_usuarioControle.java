@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import model.Tipo_usuario;
-import model.Usuario;
 
 public class Tipo_usuarioControle implements DAO<Tipo_usuario> {
 	@Override

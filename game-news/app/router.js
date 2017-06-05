@@ -16,8 +16,11 @@ Router.map(function() {
   });
 
   this.route('noticia', function() {
-    this.route('criar-noticia');
     this.route('listar-noticia');
+    this.route('gerenciar-noticia', function() {
+      this.route('criar-noticia');
+      this.route('editar-noticia', { path: '/:noticia_id' });
+    });
   });
 });
 

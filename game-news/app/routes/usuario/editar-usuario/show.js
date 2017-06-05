@@ -41,14 +41,16 @@ export default Ember.Route.extend({
         url: "http://localhost:8080/WebService/usuarios/"+path_parametro.usuario_id,
         type: "DELETE",
         crossDomain: true,
-        dataType: "json",
+        dataType: "text",
         success: (result) => {
             switch (result) {
                 case true:
-                    alert('Usuario Alterado com sucesso');
+                    alert('Usuario excluido com sucesso');
+                    this.replaceWith('usuario.gerenciar-usuario');
                     break;
                 default:
-                    alert('Usuario Alterado com sucesso');
+                    alert('Usuario excluido com sucesso');
+                    this.replaceWith('usuario.gerenciar-usuario');
             }
         },
         error: (xhr, ajaxOptions, thrownError) => {
@@ -56,7 +58,6 @@ export default Ember.Route.extend({
           alert(thrownError);
         }
     });
-    this.replaceWith('usuario.gerenciar-usuario');
     }
   }
 
@@ -114,13 +115,14 @@ function alterarUsuario(tipo_usuario_id, tipo_usuario_nome){
                     alert('Usuario Alterado com sucesso');
                     break;
                 default:
-                    alert('Usuario Alterado com sucesso');
+                    alert(result);
             }
         },
         error: (xhr, ajaxOptions, thrownError) => {
-          alert(xhr.status);
-          alert(thrownError);
+
         }
     });
+  }else{
+    alert("Preencha todos os campos");
   }
 }

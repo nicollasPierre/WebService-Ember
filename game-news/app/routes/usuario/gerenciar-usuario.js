@@ -11,15 +11,24 @@ model(){
          url: "http://localhost:8080/WebService/usuarios",
          success: function(data){
           data = JSON.parse(JSON.stringify(data));
-          Array.from(data.usuario).forEach(function(item, index){
+          if(data.usuario instanceof Array){
+            Array.from(data.usuario).forEach(function(item, index){
+              document.getElementById('teste2').innerHTML += "<tr>" +
+                "<td class=\"mdl-data-table__cell--non-numeric\">"+item.username +"</td>" +
+                "<td class=\"mdl-data-table__cell--non-numeric\">"+item.email +"</td>" +
+                "<td>"+item.tp_usuario.nome +"</td>" +
+                "<td><a href='http://localhost:4200/usuario/editar-usuario/"+item.id+"'>Editar</a></td>" +
+              "</tr>";
+            });
+          }else{
             document.getElementById('teste2').innerHTML += "<tr>" +
-              "<td class=\"mdl-data-table__cell--non-numeric\">"+item.username +"</td>" +
-              "<td class=\"mdl-data-table__cell--non-numeric\">"+item.email +"</td>" +
-              "<td>"+item.tp_usuario.nome +"</td>" +
-              "<td><a href='http://localhost:4200/usuario/editar-usuario/"+item.id+"'>Editar</a></td>" +
+              "<td class=\"mdl-data-table__cell--non-numeric\">"+data.usuario.username +"</td>" +
+              "<td class=\"mdl-data-table__cell--non-numeric\">"+data.usuario.email +"</td>" +
+              "<td>"+data.usuario.tp_usuario.nome +"</td>" +
+              "<td><a href='http://localhost:4200/usuario/editar-usuario/"+data.usuario.id+"'>Editar</a></td>" +
             "</tr>";
-          });
-          },
+          }
+        },
          error: (xhr, ajaxOptions, thrownError) => {
            alert(xhr.status);
            alert(thrownError);

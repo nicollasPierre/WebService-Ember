@@ -55,6 +55,7 @@ public class UsuarioService {
 				return "Falha ao adicionar usuario";
 		} catch (Exception e) {
 			System.out.println("Erro ao inserir usuario " + usuario.getEmail() + " no bd: " + e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -67,8 +68,10 @@ public class UsuarioService {
 		System.out.println("Entrou no put");
 		try {
 			UsuarioControle usuarioController = new UsuarioControle();
-			usuarioController.alterar(id, usuario);
-			return usuario.getId() + " alterado.";
+			if(usuarioController.alterar(id, usuario)){
+				return "Usuario "+id+" alterado com sucesso";
+			}
+			return "Falha ao alterar usuario "+id;
 		} catch (Exception e) {
 			System.out.println("Erro ao alterar usuario " + usuario.getId() + " no bd: " + e.getMessage());
 			return null;
@@ -85,7 +88,7 @@ public class UsuarioService {
 			return "Usuario " + id + " excluido.";
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir usuario " + id + " no bd: " + e.getMessage());
-			return null;
+			return "Erro ao excluir usuario " + id + " no bd: ";
 		}
 	}
 

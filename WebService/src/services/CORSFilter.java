@@ -1,6 +1,5 @@
 package services;
 
-import javax.ws.rs.ext.Provider;
 
 import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerResponse;

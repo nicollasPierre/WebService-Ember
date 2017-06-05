@@ -54,8 +54,9 @@ export default Ember.Route.extend({
                         this.replaceWith('gerenciar-usuario');
                         break;
                     default:
-                        alert('Usuario Cadastrado com sucesso');
-                        this.replaceWith('usuario.gerenciar-usuario');
+                        alert(result);
+                        this.replaceWith('gerenciar-usuario');
+
                 }
             },
             error: (xhr, ajaxOptions, thrownError) => {

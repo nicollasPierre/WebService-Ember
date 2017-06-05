@@ -11,7 +11,7 @@ public class UsuarioControle implements DAO<Usuario> {
 	@Override
 	public boolean inserir(Usuario usuario) throws Exception {
 
-		if (usuario.getEmail() != null && usuario.getSenha() != null && usuario.getUsername() != null) {
+		if (usuario.getEmail() != null && usuario.getSenha() != null && usuario.getUsername() != null && buscar(usuario.getEmail()) == null) {
 			ConexaoDB.manager.getTransaction().begin();
 			try {
 				Tipo_usuario tp_usuario =new Tipo_usuarioControle().buscar(usuario.getTp_usuario().getId());
@@ -26,6 +26,7 @@ public class UsuarioControle implements DAO<Usuario> {
 				return true;
 			} catch (Exception e) {
 				System.out.println("Erro ao persist usuario no banco: " + e.getMessage());
+				ConexaoDB.manager.getTransaction().rollback();
 				e.printStackTrace();
 				return false;
 			}
@@ -41,9 +42,9 @@ public class UsuarioControle implements DAO<Usuario> {
 		uBusca.setUsername(objeto.getUsername());
 		uBusca.setEmail(objeto.getEmail());
 		uBusca.setSenha(objeto.getSenha());
-		objeto.setTp_usuario(new Tipo_usuarioControle().buscar(objeto.getTp_usuario().getId()));
-		if(objeto.getTp_usuario() == null){
-			return false;
+		Tipo_usuario tp_user = new Tipo_usuarioControle().buscar(objeto.getTp_usuario().getId());
+		if(objeto.getTp_usuario() != null){
+			objeto.setTp_usuario(tp_user);
 		}
 		uBusca.setTp_usuario(objeto.getTp_usuario());
 		ConexaoDB.manager.getTransaction().begin();
@@ -72,8 +73,12 @@ public class UsuarioControle implements DAO<Usuario> {
 				"Select new Usuario(id, username, senha, email, tp_usuario) " + "from Usuario c where c.email = :email",
 				Usuario.class);
 		query.setParameter("email", info);
-
-		return query.getResultList().get(0);
+		try{
+			return query.getResultList().get(0);
+		}catch (Exception e){
+			//pode retornanr nenhum resultado na query
+			return null;
+		}
 	}
 
 	@Override

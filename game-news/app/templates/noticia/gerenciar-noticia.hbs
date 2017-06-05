@@ -1,0 +1,30 @@
+<form action="#">
+    <table align="center">
+      <tbody>
+        <tr>
+          <td>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="titulo" required>
+              <label class="mdl-textfield__label" for="titulo">Titulo</label>
+            </div>
+            <select class="mdl-button mdl-button--primary" id="categoria" style="width:150">
+                    <option class="mdl-navigation__link" value="1">E-Sports</option>
+                    <option class="mdl-navigation__link" value="2">Review</option>
+                    <option class="mdl-navigation__link"  value="3">Noticia</option>
+            </select>
+        </td>
+      </tr>
+        <tr>
+          <td>
+        		<textarea name="txtEditor" id="conteudo" rows="10" cols="80" required></textarea>
+        </td>
+      </tr>
+        <tr>
+          <td>
+            {{outlet}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+</form>

@@ -1,14 +1,17 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -25,11 +28,13 @@ public class Usuario {
 	private String username;
 	@Column(name = "ds_senha", columnDefinition = "varchar(50)", nullable = false)
 	private String senha;
-	@Column(name = "ds_email", columnDefinition = "varchar(50)", nullable = false)
+	@Column(name = "ds_email", columnDefinition = "varchar(50)", unique = true, nullable = false)
 	private String email;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="cd_tipo_usuario_fk_tipo_usuario")
 	private Tipo_usuario tp_usuario;
+	@OneToMany(mappedBy = "autor", targetEntity = Noticia.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Noticia> noticias;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub

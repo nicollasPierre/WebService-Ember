@@ -6,8 +6,8 @@
 	<persistence-unit name="persistencia">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<!-- Modelos -->
-		<class>model.Cliente</class>
-		<class>model.Endereco</class>
+		<class>model.Usuario</class>
+		<class>model.Noticia</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes> 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

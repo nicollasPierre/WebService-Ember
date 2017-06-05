@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:noticia/criar-noticia', 'Unit | Route | noticia/criar noticia', {
+moduleFor('route:noticia/gerenciar-noticia/editar-noticia', 'Unit | Route | noticia/gerenciar noticia/editar noticia', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

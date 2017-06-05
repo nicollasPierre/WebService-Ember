@@ -19,12 +19,14 @@ public class NoticiaService {
 	@GET
 	@Produces({ "application/json" })
 	public List<Noticia> getNoticias() {
+		System.out.println("Solicitação de get feita");
 		try {
 			NoticiaControle un = new NoticiaControle();
 			List<Noticia> lista = un.listar();
 			return lista;
 		} catch (Exception e) {
 			System.out.println("Erro Ao buscar notícias do bd: " + e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -33,11 +35,13 @@ public class NoticiaService {
 	@GET
 	@Produces("application/json")
 	public Noticia getNoticia(@PathParam("id") int id) {
+		System.out.println("Solicitação de get feita");
 		try {
 			NoticiaControle noticiaController = new NoticiaControle();
 			return noticiaController.buscar(id);
 		} catch (Exception e) {
 			System.out.println("Erro ao buscar notícia " + id + " do bd: " + e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -46,13 +50,17 @@ public class NoticiaService {
 	@Consumes("application/json")
 	@Produces("text/plain")
 	public String addNoticia(Noticia noticia) {
+		
 		try {
 			NoticiaControle noticiaController = new NoticiaControle();
-			noticiaController.inserir(noticia);
-			return "Notícia " + noticia.getTitulo() + "(" + noticia.getId() +") adicionada.";
+			if (noticiaController.inserir(noticia))
+				return "Notícia " + noticia.getTitulo() + "(" + noticia.getId() + ") adicionada.";
+			else
+				return "Erro ao persistir noticia";
 		} catch (Exception e) {
 			System.out.println("Erro ao inserir notícia " + noticia.getTitulo() + " no bd: " + e.getMessage());
-			return null;
+			e.printStackTrace();
+			return "Erro no servidor ao inserir noticia: " + e.getMessage();
 		}
 	}
 
@@ -61,12 +69,15 @@ public class NoticiaService {
 	@Consumes("application/json")
 	@Produces("text/plain")
 	public String atualizaNoticia(Noticia noticia, @PathParam("id") int id) {
+		System.out.println("Solicitação de put feita");
 		try {
 			NoticiaControle noticiaController = new NoticiaControle();
 			noticiaController.alterar(id, noticia);
-			return "Notícia " + noticia.getTitulo() + "(" + noticia.getId() +") alterada.";
+			return "Notícia " + noticia.getTitulo() + "(" + noticia.getId() + ") alterada.";
 		} catch (Exception e) {
-			System.out.println("Erro ao alterar notícia " + noticia.getTitulo() + "(" + noticia.getId() +") no bd: " + e.getMessage());
+			System.out.println("Erro ao alterar notícia " + noticia.getTitulo() + "(" + noticia.getId() + ") no bd: "
+					+ e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -75,12 +86,14 @@ public class NoticiaService {
 	@DELETE
 	@Produces("text/plain")
 	public String removeNoticia(@PathParam("id") int id) {
+		System.out.println("Solicitação de delete feita");
 		try {
 			NoticiaControle noticiaController = new NoticiaControle();
 			noticiaController.excluir(id);
-			return "Notícia "+id + " excluída.";
+			return "Notícia " + id + " excluída.";
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir notícia " + id + " no bd: " + e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
