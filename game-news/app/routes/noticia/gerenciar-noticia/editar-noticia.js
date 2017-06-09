@@ -3,7 +3,7 @@ var noticia_id;
 export default Ember.Route.extend({
   model(params){
     noticia_id = params.noticia_id
-    getNoticia(noticia_id)
+    getNoticia()
   },
   actions: {
     alterarNoticia(){
@@ -11,7 +11,7 @@ export default Ember.Route.extend({
       var conteudo = document.getElementById('conteudo').value;
       var categoria = document.getElementById('categoria');
       var categoria_texto = categoria.options[categoria.selectedIndex].text;
-		  var categoria_value = categoria.options[categoria.selectedIndex].value;
+      var categoria_value = categoria.options[categoria.selectedIndex].value;
 
       if(titulo == '' || categoria == '' || conteudo == ''){
         alert("Campos não preenchidos")
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
             data: JSON.stringify( {
                         "titulo": titulo,
                         "categorias": {
-                                        "id:" : categoria_value,
+                                        "id" : categoria_value,
                                         "nome": categoria_texto
                                       },
                         "conteudo": conteudo,
@@ -51,6 +51,7 @@ export default Ember.Route.extend({
                 }
             },
             error: (xhr, ajaxOptions, thrownError) => {
+              alert(xhr+": "+thrownError)
               this.replaceWith('noticia.listar-noticia');
             }
         });
@@ -91,7 +92,7 @@ export default Ember.Route.extend({
 
 
 
-function getNoticia(id){
+function getNoticia(){
   Ember.$.ajax({
          type: "GET",
          crossDomain: true,
